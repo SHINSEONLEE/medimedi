@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="company.co.mediclock">
+    package="org.techtown.mediclock">
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
     <application
         android:allowBackup="true"
@@ -9,14 +10,41 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-        <activity android:name=".MainActivity">
+        <activity android:name=".CustomScannerActivity"></activity>
+        <activity
+            android:name=".AnyOrientationCaptureActivity"
+            android:screenOrientation="fullSensor"
+            android:stateNotNeeded="true"
+            android:theme="@style/zxing_CaptureTheme"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity android:name=".BarcodeActivity" />
+        <activity android:name=".Description"/>
+        <activity android:name=".Howtouse"/>
+        <activity android:name=".Introduction"/>
+        <activity android:name=".Mymeditime_min"/>
+        <activity android:name=".Medialarm"/>
+        <activity android:name=".Medimorning"/>
+        <activity android:name=".Mediname"/>
+        <activity android:name=".Medirepeat"/>
+        <activity android:name=".Meditime"/>
+        <activity android:name=".Mediweek"/>
+        <activity android:name=".Mediweekdays"/>
+        <activity android:name=".Mymeditime_hour"/>
+        <activity android:name=".Search_List"/>
+        <activity android:name=".Search_Text"/>
+        <activity android:name=".SearchActivity"/>
+        <activity android:name=".SeecodeActivity"/>
+        <activity android:name=".ShareActivity"/>
+        <activity android:name=".ShareAlarm"/>
+        <activity android:name=".WritecodeActivity"/>
+        <activity android:name=".Mainmenu">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>

@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="mediclock/app" />
+      <module fileurl="file://$PROJECT_DIR$/mediclock.iml" filepath="$PROJECT_DIR$/mediclock.iml" group="mediclock" />
       <module fileurl="file://$PROJECT_DIR$/.idea/medimedi.iml" filepath="$PROJECT_DIR$/.idea/medimedi.iml" />
     </modules>
   </component>
