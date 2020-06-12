@@ -1,8 +1,11 @@
 package org.techtown.mediclock;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +14,27 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import java.io.File;
+import java.util.Calendar;
+
 public class Mediweek extends AppCompatActivity {
+    private static final String BASE_PATH = Environment.getExternalStorageDirectory() + "/myapp";
+    private static final String NORMAL_PATH = BASE_PATH + "/normal";
+    public static boolean mon_pr = false;
+    static boolean tue_pr = false;
+    static boolean wed_pr = false;
+    static boolean thur_pr = false;
+    static boolean fri_pr = false;
+    static boolean sat_pr = false;
+    static boolean sun_pr = false;
+    static boolean ev_pr = false;
+
+    static boolean[] week = {mon_pr, tue_pr, wed_pr, thur_pr, fri_pr, sat_pr, sun_pr, ev_pr};
+
+    private AlarmManager _am;
+
+    private Button mon, tue, wed, thur, fri, sat, sun ;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,7 +44,7 @@ public class Mediweek extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                Intent intent_medialarm = new Intent(getApplicationContext(), Medialarm.class); //일단 바로 검색결과 띄음
+                Intent intent_medialarm = new Intent(getApplicationContext(), TimePickerAlarm.class); //일단 바로 검색결과 띄음
                 startActivity(intent_medialarm);
 
             }
@@ -36,6 +59,24 @@ public class Mediweek extends AppCompatActivity {
         final Button sun = findViewById(R.id.sun);
         final Button every = findViewById(R.id.everyday);
 
+/*
+        File file = new File(NORMAL_PATH + "/drop_1235.m4a");
+        //boolean[] week = { false, sun.isPressed(), mon.isPressed(), tue.isPressed() , wed.isPressed() ,
+                //thur.isPressed() ,fri.isPressed(), sat.isPressed()}; // sunday=1 이라서 0의 자리에는 아무 값이나 넣었음
+
+        Intent intent = new Intent(this, AlarmReceiver.class);
+        intent.putExtra("file", file.toString());
+        intent.putExtra("weekday", week);
+        PendingIntent pIntent = PendingIntent.getBroadcast(this, file.hashCode(), intent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+        Calendar cal = Calendar.getInstance();
+        cal.set(Calendar.SECOND, cal.get(Calendar.SECOND) + 10); // 10초 뒤
+
+        long oneday = 24 * 60 * 60 * 1000;// 24시간
+
+        // 10초 뒤에 시작해서 매일 같은 시간에 반복하기
+        _am.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), oneday, pIntent);
+       */
 
         mon.setOnClickListener(new View.OnClickListener() {
             int clickmon = 0;
@@ -45,12 +86,14 @@ public class Mediweek extends AppCompatActivity {
                     mon.setSelected(true);
                     mon.setBackgroundResource(R.drawable.pr_button_week_pressed);
                     clickmon = 1;
+                    mon_pr = true;
                 }
                 else
                 {
                     mon.setSelected(false);
                     mon.setBackgroundResource(R.drawable.pr_button_week);
                     clickmon= 0;
+                    mon_pr = false;
                 }
             }
         });
@@ -62,12 +105,14 @@ public class Mediweek extends AppCompatActivity {
                     tue.setSelected(true);
                     tue.setBackgroundResource(R.drawable.pr_button_week_pressed);
                     clicktue = 1;
+                    tue_pr = true;
                 }
                 else
                 {
                     tue.setSelected(false);
                     tue.setBackgroundResource(R.drawable.pr_button_week);
                     clicktue= 0;
+                    tue_pr = false;
                 }
             }
         });
@@ -80,12 +125,14 @@ public class Mediweek extends AppCompatActivity {
                     wed.setSelected(true);
                     wed.setBackgroundResource(R.drawable.pr_button_week_pressed);
                     clickwed = 1;
+                    wed_pr = true;
                 }
                 else
                 {
                     wed.setSelected(false);
                     wed.setBackgroundResource(R.drawable.pr_button_week);
                     clickwed= 0;
+                    wed_pr = false;
                 }
             }
         });
@@ -97,12 +144,14 @@ public class Mediweek extends AppCompatActivity {
                     thur.setSelected(true);
                     thur.setBackgroundResource(R.drawable.pr_button_week_pressed);
                     clickthur = 1;
+                    thur_pr = true;
                 }
                 else
                 {
                     thur.setSelected(false);
                     thur.setBackgroundResource(R.drawable.pr_button_week);
                     clickthur= 0;
+                    thur_pr = false;
                 }
             }
         });
@@ -114,12 +163,14 @@ public class Mediweek extends AppCompatActivity {
                     fri.setSelected(true);
                     fri.setBackgroundResource(R.drawable.pr_button_week_pressed);
                     clickfri = 1;
+                    fri_pr = true;
                 }
                 else
                 {
                     fri.setSelected(false);
                     fri.setBackgroundResource(R.drawable.pr_button_week);
                     clickfri= 0;
+                    fri_pr = false;
                 }
             }
         });
@@ -131,12 +182,14 @@ public class Mediweek extends AppCompatActivity {
                     sat.setSelected(true);
                     sat.setBackgroundResource(R.drawable.pr_button_week_pressed);
                     clicksat = 1;
+                    sat_pr = true;
                 }
                 else
                 {
                     sat.setSelected(false);
                     sat.setBackgroundResource(R.drawable.pr_button_week);
                     clicksat= 0;
+                    sat_pr = false;
                 }
             }
         });
@@ -148,12 +201,14 @@ public class Mediweek extends AppCompatActivity {
                     sun.setSelected(true);
                     sun.setBackgroundResource(R.drawable.pr_button_week_pressed);
                     clicksun = 1;
+                    sun_pr = true;
                 }
                 else
                 {
                     sun.setSelected(false);
                     sun.setBackgroundResource(R.drawable.pr_button_week);
                     clicksun= 0;
+                    sun_pr = false;
                 }
             }
         });
@@ -165,12 +220,15 @@ public class Mediweek extends AppCompatActivity {
                     every.setSelected(true);
                     every.setBackgroundResource(R.drawable.pr_button_week_pressed);
                     clickevery = 1;
+                    ev_pr = true;
+
                 }
                 else
                 {
                     every.setSelected(false);
                     every.setBackgroundResource(R.drawable.pr_button_week);
                     clickevery= 0;
+                    ev_pr = false;
                 }
             }
         });

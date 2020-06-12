@@ -22,6 +22,15 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Locale;
 
+import static org.techtown.mediclock.Mediweek.ev_pr;
+import static org.techtown.mediclock.Mediweek.fri_pr;
+import static org.techtown.mediclock.Mediweek.mon_pr;
+import static org.techtown.mediclock.Mediweek.sat_pr;
+import static org.techtown.mediclock.Mediweek.sun_pr;
+import static org.techtown.mediclock.Mediweek.thur_pr;
+import static org.techtown.mediclock.Mediweek.tue_pr;
+import static org.techtown.mediclock.Mediweek.wed_pr;
+
 public class TimePickerAlarm extends AppCompatActivity {
 
     @Override
@@ -39,7 +48,7 @@ public class TimePickerAlarm extends AppCompatActivity {
         long millis = sharedPreferences.getLong("nextNotifyTime", Calendar.getInstance().getTimeInMillis());
 
         Calendar nextNotifyTime = new GregorianCalendar();
-        nextNotifyTime.setTimeInMillis(millis);
+        nextNotifyTime.setTimeInMillis(millis); //notification 설정
 
         Date nextDate = nextNotifyTime.getTime();
         String date_text = new SimpleDateFormat("yyyy년 MM월 dd일 EE요일 a hh시 mm분 ", Locale.getDefault()).format(nextDate);
@@ -50,6 +59,7 @@ public class TimePickerAlarm extends AppCompatActivity {
         Date currentTime = nextNotifyTime.getTime();
         SimpleDateFormat HourFormat = new SimpleDateFormat("kk", Locale.getDefault());
         SimpleDateFormat MinuteFormat = new SimpleDateFormat("mm", Locale.getDefault());
+
 
         int pre_hour = Integer.parseInt(HourFormat.format(currentTime));
         int pre_minute = Integer.parseInt(MinuteFormat.format(currentTime));
@@ -64,34 +74,38 @@ public class TimePickerAlarm extends AppCompatActivity {
         }
 
 
-        Button button = (Button)findViewById(R.id.alarm_btn);
+        Button button = (Button) findViewById(R.id.alarm_btn);  //알람 설정 버튼 클릭시에 일어나는 이벤트
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
 
                 int hour, hour_24, minute;
-                String am_pm;
+                String am_pm, weekpr;
+
                 if (Build.VERSION.SDK_INT >= 23) {
                     hour_24 = picker.getHour();
-                    minute = picker.getMinute();
+                    minute = picker.getMinute();       //변수에 설정한 시각, 분 저장
                 } else {
                     hour_24 = picker.getCurrentHour();
                     minute = picker.getCurrentMinute();
                 }
                 if (hour_24 > 12) {
                     am_pm = "PM";
-                    hour = hour_24 - 12;
+                    hour = hour_24 - 12;      //12보다 늦으면 pm 오후로 돌리기
                 } else {
                     hour = hour_24;
-                    am_pm = "AM";
+                    am_pm = "AM";        //12보다 작으면 am 오전으로 돌리기
                 }
 
-                // 현재 지정된 시간으로 알람 시간 설정
                 Calendar calendar = Calendar.getInstance();
                 calendar.setTimeInMillis(System.currentTimeMillis());
+
+                // 현재 지정된 시간으로 알람 시간 설정
+
+
                 calendar.set(Calendar.HOUR_OF_DAY, hour_24);
                 calendar.set(Calendar.MINUTE, minute);
-                calendar.set(Calendar.SECOND, 0);
+                calendar.set(Calendar.SECOND, 0);   //calender에다가 hous와 min set해놓기
 
                 // 이미 지난 시간을 지정했다면 다음날 같은 시간으로 설정
                 if (calendar.before(Calendar.getInstance())) {
@@ -99,8 +113,58 @@ public class TimePickerAlarm extends AppCompatActivity {
                 }
 
                 Date currentDateTime = calendar.getTime();
-                String date_text = new SimpleDateFormat("yyyy년 MM월 dd일 EE요일 a hh시 mm분 ", Locale.getDefault()).format(currentDateTime);
-                Toast.makeText(getApplicationContext(), date_text + "으로 알람이 설정되었습니다!", Toast.LENGTH_SHORT).show();
+                String date_text = new SimpleDateFormat("a hh시 mm분 ", Locale.getDefault()).format(currentDateTime);
+
+                if (ev_pr) {
+                    weekpr = "매일";
+                    Toast.makeText(getApplicationContext(), "매일" + date_text + "으로 알람이 설정되었습니다!", Toast.LENGTH_SHORT).show();  //calender에 저장되어 있는 time 가져와서 date_text에 넣기
+                }
+                if (sun_pr) {
+                    weekpr = "일";
+                    calendar.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
+                    date_text = "일요일 " + date_text ;
+                    //Toast.makeText(getApplicationContext(), "일요일 " + date_text + "으로 알람이 설정되었습니다!", Toast.LENGTH_SHORT).show();  //calender에 저장되어 있는 time 가져와서 date_text에 넣기
+                }
+                if (sat_pr) {
+                    weekpr = "토";
+                    calendar.set(Calendar.DAY_OF_WEEK, Calendar.SATURDAY);
+                    date_text = "토요일 " + date_text ;
+                    //Toast.makeText(getApplicationContext(), "토요일 " + date_text + "으로 알람이 설정되었습니다!", Toast.LENGTH_SHORT).show();  //calender에 저장되어 있는 time 가져와서 date_text에 넣기
+                }
+                if (fri_pr) {
+                    weekpr = "금";
+                    calendar.set(Calendar.DAY_OF_WEEK, Calendar.FRIDAY);
+                    date_text = "금요일 " + date_text ;
+                    //Toast.makeText(getApplicationContext(), "금요일 " + date_text + "으로 알람이 설정되었습니다!", Toast.LENGTH_SHORT).show();  //calender에 저장되어 있는 time 가져와서 date_text에 넣기
+                }
+                if (thur_pr) {
+                    weekpr = "목";
+                    calendar.set(Calendar.DAY_OF_WEEK, Calendar.THURSDAY);
+                    date_text = "목요일 " + date_text ;
+                    //Toast.makeText(getApplicationContext(), "목요일 " + date_text + "으로 알람이 설정되었습니다!", Toast.LENGTH_SHORT).show();  //calender에 저장되어 있는 time 가져와서 date_text에 넣기
+                }
+                if (wed_pr) {
+                    weekpr = "수";
+                    calendar.set(Calendar.DAY_OF_WEEK, Calendar.WEDNESDAY);
+                    date_text = "수요일 " + date_text ;
+                    //Toast.makeText(getApplicationContext(), "수요일 " + date_text + "으로 알람이 설정되었습니다!", Toast.LENGTH_SHORT).show();  //calender에 저장되어 있는 time 가져와서 date_text에 넣기
+                }
+                if (tue_pr) {
+                    weekpr = "화";
+                    calendar.set(Calendar.DAY_OF_WEEK, Calendar.TUESDAY);
+                    date_text = "화요일 " + date_text ;
+                    //Toast.makeText(getApplicationContext(), "화요일 " + date_text + "으로 알람이 설정되었습니다!", Toast.LENGTH_SHORT).show();  //calender에 저장되어 있는 time 가져와서 date_text에 넣기
+                }
+                if (mon_pr) {
+                    weekpr = "월";
+                    calendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
+                    date_text = "월요일 " + date_text ;
+                    //Toast.makeText(getApplicationContext(), "월요일 " + date_text + "으로 알람이 설정되었습니다!", Toast.LENGTH_SHORT).show();  //calender에 저장되어 있는 time 가져와서 date_text에 넣기
+                }
+
+
+                Toast.makeText(getApplicationContext(),  date_text + "으로 알람이 설정되었습니다!", Toast.LENGTH_SHORT).show();
+
 
                 //  Preference에 설정한 값 저장
                 SharedPreferences.Editor editor = getSharedPreferences("daily alarm", MODE_PRIVATE).edit();
@@ -112,8 +176,8 @@ public class TimePickerAlarm extends AppCompatActivity {
             }
 
         });
-    }
 
+    }
 
     void diaryNotification(Calendar calendar) {
 //        PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
@@ -129,16 +193,20 @@ public class TimePickerAlarm extends AppCompatActivity {
 
 
         // 사용자가 매일 알람을 허용했다면
-        if (dailyNotify) {
-
+        if ( ev_pr) {
 
             if (alarmManager != null) {
 
+                /*alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
+                        AlarmManager.INTERVAL_DAY, pendingIntent);*/
+
                 alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
-                        AlarmManager.INTERVAL_DAY, pendingIntent);
+                        1000*60*60*24, pendingIntent);
+
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
+                    alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,
+                            calendar.getTimeInMillis(), 1000 * 60 * 60 * 24, pendingIntent);
                 }
             }
 
@@ -162,7 +230,7 @@ public class TimePickerAlarm extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent_mainmenu = new Intent(getApplicationContext(), Medirepeat.class); //다음 액티비티 화면으로 전환
+                Intent intent_mainmenu = new Intent(getApplicationContext(), Mediweek.class); //다음 액티비티 화면으로 전환
                 startActivity(intent_mainmenu);
 
             }
