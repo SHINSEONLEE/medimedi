@@ -40,7 +40,7 @@
         <activity android:name=".SearchActivity"/>
         <activity android:name=".SeecodeActivity"/>
         <activity android:name=".ShareActivity"/>
-        <activity android:name=".ShareAlarm"/>
+        <activity android :name=".ShareAlarm"/>
         <activity android:name=".WritecodeActivity"/>
         <activity android:name=".Mainmenu">
             <intent-filter>

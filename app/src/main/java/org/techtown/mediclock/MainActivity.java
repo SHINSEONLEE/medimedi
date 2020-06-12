@@ -164,7 +164,7 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent_mainmenu = new Intent(getApplicationContext(), Medirepeat.class); //일단 바로 검색결과 띄음
+                Intent intent_mainmenu = new Intent(getApplicationContext(), Medirepeat.class); //다음 액티비티 화면으로 전환
                 startActivity(intent_mainmenu);
 
             }
