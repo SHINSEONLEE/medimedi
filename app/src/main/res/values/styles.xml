@@ -8,4 +8,8 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="timepicker">
+        <item name="android:textSize">50sp</item>
+    </style>
+
 </resources>
