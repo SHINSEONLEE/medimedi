@@ -1,7 +1,5 @@
 package org.techtown.mediclock;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.ComponentName;
@@ -16,20 +14,20 @@ import android.widget.Button;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Locale;
 
-import static android.content.Context.MODE_PRIVATE;
-
-public class MainActivity extends AppCompatActivity {
+public class TimePickerAlarm extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.timepicker_alarm);
 
         final TimePicker picker = (TimePicker) findViewById(R.id.timePicker);
         picker.setIs24HourView(true); //24시간 view로 만들기
@@ -66,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
-        Button button = (Button) findViewById(R.id.alarm_btn);
+        Button button = (Button)findViewById(R.id.alarm_btn);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {

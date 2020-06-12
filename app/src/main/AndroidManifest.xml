@@ -13,18 +13,28 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity android:name=".CustomScannerActivity"></activity>
+
         <activity
             android:name=".AnyOrientationCaptureActivity"
             android:screenOrientation="fullSensor"
             android:stateNotNeeded="true"
             android:theme="@style/zxing_CaptureTheme"
             android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity android:name=".Mainmenu">
+            <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
         <activity android:name=".BarcodeActivity" />
         <activity android:name=".Description"/>
         <activity android:name=".Howtouse"/>
+        <activity android:name=".TimePickerAlarm"/>
         <activity android:name=".Introduction"/>
-        <activity android:name=".MainActivity"/>
         <activity android:name=".Search_Photo"/>
         <activity android:name=".Mymeditime_min"/>
         <activity android:name=".Medialarm"/>
@@ -40,15 +50,9 @@
         <activity android:name=".SearchActivity"/>
         <activity android:name=".SeecodeActivity"/>
         <activity android:name=".ShareActivity"/>
-        <activity android :name=".ShareAlarm"/>
+        <activity android:name=".ShareAlarm"/>
         <activity android:name=".WritecodeActivity"/>
-        <activity android:name=".Mainmenu">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
         <receiver android:name=".DeviceBootReceiver"
             android:enabled="false">
             <intent-filter>
@@ -57,6 +61,7 @@
         </receiver>
 
         <receiver android:name=".AlarmReceiver" />
+
     </application>
 
 </manifest>

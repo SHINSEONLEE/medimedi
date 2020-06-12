@@ -23,7 +23,7 @@ public class Mediname extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent_meditime = new Intent(getApplicationContext(), MainActivity.class); //일단 바로 검색결과 띄음
+                Intent intent_meditime = new Intent(getApplicationContext(), TimePickerAlarm.class); //일단 바로 검색결과 띄음
                 startActivity(intent_meditime);
                 Toast toastView = Toast.makeText(getApplicationContext(), "약 이름이 설정되었습니다", Toast.LENGTH_LONG);
                 toastView.setGravity( Gravity.TOP| Gravity.LEFT, 320, 700); //토스트 메시지 위치 x,y좌표로 바꿀 수 있다.
