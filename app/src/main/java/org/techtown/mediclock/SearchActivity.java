@@ -94,7 +94,7 @@ protected void onCreate(Bundle savedInstanceState) {
     button2.setOnClickListener(new View.OnClickListener(){
         @Override
         public void onClick(View v) {
-            Intent intent_search_list = new Intent(getApplicationContext(), Search_List.class); //일단 바로 검색결과 띄음
+            Intent intent_search_list = new Intent(getApplicationContext(), Search_Photo.class); //일단 바로 검색결과 띄음
             startActivity(intent_search_list);
         }
     });
