@@ -1,4 +1,4 @@
-package company.co.mediprac;
+package company.co.mediclock;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -15,6 +15,9 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.ArrayList;
+
+import company.co.mediclock.R;
+import company.co.mediclock.RecyclerviewAdapter;
 
 public class TextresultActivity extends AppCompatActivity {
 

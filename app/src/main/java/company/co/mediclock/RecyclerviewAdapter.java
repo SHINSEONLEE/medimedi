@@ -1,4 +1,4 @@
-package company.co.mediprac;
+package company.co.mediclock;
 
 
 import android.content.Context;
@@ -11,6 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+
+import company.co.mediclock.R;
 
 public class RecyclerviewAdapter extends RecyclerView.Adapter<RecyclerviewAdapter.MyViewHolder> {
 
@@ -36,6 +38,7 @@ public class RecyclerviewAdapter extends RecyclerView.Adapter<RecyclerviewAdapte
     public void onBindViewHolder (@NonNull MyViewHolder holder, int position){
         //binding
         holder.ITEM_NAME.setText(mList.get(position).ITEM_NAME);
+        holder.ENTP_NAME.setText(mList.get(position).ENTP_NAME);
     }
 
     // Return the size of your dataset (invoked by the layout manager)
@@ -48,10 +51,12 @@ public class RecyclerviewAdapter extends RecyclerView.Adapter<RecyclerviewAdapte
         // each data item is just a string in this case
         //public TextView textView;
         public TextView ITEM_NAME;
+        public TextView ENTP_NAME;
 
         public MyViewHolder(View itemView){
             super(itemView);
             ITEM_NAME = itemView.findViewById(R.id.item_name);
+            ENTP_NAME = itemView.findViewById(R.id.entp_name);
         }
 //        public MyViewHolder(TextView v) {
 //            super(v);
