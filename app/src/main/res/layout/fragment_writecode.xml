@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#FDFDFD"
     android:orientation="vertical"
-    tools:context="company.co.mediclock.MainActivity">
+    tools:context="org.techtown.mediclock.Mainmenu">
 
     <TextView
         android:id="@+id/textView6"
@@ -15,17 +15,22 @@
         android:layout_margin="25dp"
         android:gravity="center"
         android:text="코드 입력"
-        android:textSize="50sp" />
+        android:textSize="50sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView8"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="400dp"
+        android:layout_height="80dp"
         android:layout_margin="20dp"
-        android:text="공유하고 싶은 상대의 \n공유 코드를  입력해 주세요 "
-        android:textSize="30sp"
-        app:layout_constraintTop_toBottomOf="@+id/textView6"
-        tools:layout_editor_absoluteX="38dp" />
+        android:layout_marginTop="20dp"
+        android:text="공유하고 싶은 상대의 공유 코드를  확인하여 이곳에 입력해 주세요 "
+        android:textSize="28sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
     <TextView
         android:id="@+id/inputbox"
@@ -35,15 +40,27 @@
         android:background="@drawable/border"
         android:textColor="@android:color/black"
         android:textSize="36sp"
-        app:layout_constraintTop_toBottomOf="@+id/textView8"
-        tools:layout_editor_absoluteX="25dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.375"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
-    <TableLayout
-        android:layout_width="356dp"
-        android:layout_height="322dp"
-        android:stretchColumns="0, 1, 2"
+    <Button
+        android:id="@+id/confirmwritecode_btn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="입력"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tableLayout3" />
+
+    <TableLayout
+        android:id="@+id/tableLayout3"
+        android:layout_width="409dp"
+        android:layout_height="279dp"
+        android:layout_marginTop="7dp"
+        android:stretchColumns="0, 1, 2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/inputbox">
 
@@ -51,7 +68,7 @@
 
             <Button
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="70dp"
                 android:background="@drawable/pr_button_weekdays"
                 android:gravity="center"
                 android:text="1"
@@ -79,7 +96,7 @@
 
             <Button
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="70dp"
                 android:background="@drawable/pr_button_weekdays"
                 android:gravity="center"
                 android:text="4"
@@ -107,7 +124,7 @@
 
             <Button
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="70dp"
                 android:background="@drawable/pr_button_weekdays"
                 android:gravity="center"
                 android:text="7"
@@ -135,7 +152,7 @@
 
             <Button
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="70dp"
                 android:background="@drawable/pr_button_weekdays"
                 android:gravity="center"
                 android:text="*"
@@ -150,7 +167,7 @@
                 android:textSize="40sp" />
 
             <Button
-                android:id="@+id/next3"
+                android:id="@+id/next"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:background="@drawable/pr_button_weekdays"

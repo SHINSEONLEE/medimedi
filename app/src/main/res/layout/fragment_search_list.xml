@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#FDFDFD"
-    tools:context="company.co.mediclock.MainActivity" >
+    tools:context="org.techtown.mediclock.Mainmenu" >
 
     <EditText
         android:id="@+id/editText4"

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#FDFDFD"
-    tools:context="company.co.mediclock.MainActivity">
+    tools:context="org.techtown.mediclock.Mainmenu" >
 
     <EditText
         android:id="@+id/editText3"
@@ -37,6 +37,14 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/searchtext_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="검색"
+            tools:layout_editor_absoluteX="114dp"
+            tools:layout_editor_absoluteY="35dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
