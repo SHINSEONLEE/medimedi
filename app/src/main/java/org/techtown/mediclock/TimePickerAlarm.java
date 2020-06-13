@@ -9,8 +9,11 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
+import android.telephony.TelephonyManager;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -37,6 +40,13 @@ public class TimePickerAlarm extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.timepicker_alarm);
+
+        TelephonyManager tm = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
+
+        String android_id = Settings.Secure.getString(this.getContentResolver(), Settings.Secure.ANDROID_ID);
+        //Log.d(TAG, android_id);
+        // String android_id="088738928";
+        //int id2 = Integer.parseInt(android_id);
 
         final TimePicker picker = (TimePicker) findViewById(R.id.timePicker);
         picker.setIs24HourView(true); //24시간 view로 만들기
